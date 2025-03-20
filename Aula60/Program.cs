@@ -1,70 +1,55 @@
 ﻿using Aula60;
 using System.Globalization;
-ContaBancaria conta = new ContaBancaria();
+ContaBancaria conta;
 
 Console.Write("Digite o número da conta: ");
-conta.NumeroConta = Console.ReadLine().ToUpper();
-Console.Write("Digite o nome do titular: ");
-conta.Titular = Console.ReadLine().ToUpper();
-Console.Write("Haverá depósito inicial (s/n)? ");
-string DepInicial = Console.ReadLine().ToUpper();
+int numero = int.Parse(Console.ReadLine());
 
-if(DepInicial == "S") {
+Console.Write("Digite o nome do titular: ");
+string titular = Console.ReadLine();
+
+Console.Write("Haverá depósito inicial (s/n)? ");
+char DepInicial = char.Parse(Console.ReadLine().ToUpper());
+double valor = 0;
+
+
+Console.WriteLine();
+
+if (DepInicial == 'S')
+{
+    conta = new ContaBancaria(numero, titular, valor);
     Console.Write("Entre o valor de depósito inicial: ");
-double valor = double.Parse(Console.ReadLine());
-conta.Depositar(valor);
+    valor = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+    conta.Depositar(valor);
 }
 else
-    conta.Saldo = 0;
+    conta = new ContaBancaria(numero, titular);
+
+
+Console.WriteLine();
+
+Console.WriteLine("Dados da conta:");
+Console.WriteLine(conta);
+
+Console.WriteLine();
+Console.Write("Entre um valor para deposito: ");
+valor = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+conta.Depositar(valor);
+
+Console.WriteLine();
+
+Console.WriteLine("Dados da conta:");
+Console.WriteLine(conta);
+
+Console.WriteLine();
+
+Console.Write("Entre um valor para saque: ");
+valor = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+conta.Sacar(valor);
+
+Console.WriteLine();
 
 Console.WriteLine("Dados da conta:");
 Console.Write(conta);
-conta.ExibirSaldo();
 
-
-
-
-    //if (opcao == "DEPOSITAR")
-    //{
-    //    Console.Clear();
-    //    Console.WriteLine($" Número da conta: {conta.NumeroConta}                     Nome do Titular: {conta.Titular}");
-    //    Console.WriteLine("Digite o valor a ser depositado: ");
-    //    double valor = double.Parse(Console.ReadLine());
-    //    conta.Depositar(valor);
-    //    Console.Clear();
-    //    Console.WriteLine($" Número da conta: {conta.NumeroConta}                     Nome do Titular: {conta.Titular}");
-    //    Console.WriteLine("Digite depositar, sacar, exibir saldo ou sair ");
-    //    opcao = Console.ReadLine().ToUpper();
-
-    //}
-    //else if (opcao == "SACAR")
-    //{
-    //    Console.Clear();
-    //    Console.WriteLine($" Número da conta: {conta.NumeroConta}                     Nome do Titular: {conta.Titular}");
-    //    Console.WriteLine("Digite o valor a ser sacado: ");
-    //    double valor = double.Parse(Console.ReadLine());
-    //    conta.Sacar(valor);
-    //    Console.Clear();
-    //    Console.WriteLine($" Número da conta: {conta.NumeroConta}                     Nome do Titular: {conta.Titular}");
-    //    Console.WriteLine("Digite depositar, sacar, exibir saldo ou sair ");
-    //    opcao = Console.ReadLine().ToUpper();
-    //}
-    //else if (opcao == "EXIBIR SALDO")
-    //{
-    //    Console.Clear();
-    //    Console.WriteLine($" Número da conta: {conta.NumeroConta}                     Nome do Titular: {conta.Titular}");
-    //    conta.ExibirSaldo();
-    //    Console.WriteLine("Digite depositar, sacar, exibir saldo ou sair ");
-    //    opcao = Console.ReadLine().ToUpper();
-    //}
-    //else if (opcao == "SAIR")
-    //{
-    //    Console.WriteLine("Obrigado por utilizar nossos serviços");
-    //}
-    //else
-    //{
-    //    Console.WriteLine("Opção inválida");
-    //    Console.WriteLine("Digite depositar, sacar, exibir saldo ou sair ");
-    //    opcao = Console.ReadLine().ToUpper();
-    //}
 
